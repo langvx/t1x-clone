@@ -148,3 +148,13 @@ export const MobileLocationList = styled.div`
     color: ${(p) => p.theme.colors.text.primary};
   }
 `;
+
+export const UserName = styled.a`
+  width: 70%;
+  display: block;
+`;
+
+export const DIV = styled.div``;
+export const UL = styled.ul``;
+export const A = styled.a``;
+export const IMG = styled.img``;

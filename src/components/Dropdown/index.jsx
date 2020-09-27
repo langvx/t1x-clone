@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 
 import ExpandIco from "assets/dropdown-icon.png";
 
-import { DropList, Title } from "./DropdownStyle";
+import { DropList, Title, Root } from "./DropdownStyle";
 
 const DropdownMenu = (props) => {
   const [isLocating, setLocating] = useState(false);
@@ -35,7 +35,7 @@ const DropdownMenu = (props) => {
   };
 
   return (
-    <div ref={node}>
+    <Root ref={node}>
       <Title
         style={{ backgroundImage: "url(" + ExpandIco + ")" }}
         onClick={handleClickOutside}
@@ -45,7 +45,7 @@ const DropdownMenu = (props) => {
       {isLocating && (
         <DropList className="scrollStyled">{handleRenderList()}</DropList>
       )}
-    </div>
+    </Root>
   );
 };
 

@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { SIGN_UP_SUCCESS, SIGN_UP_FAIL, SIGN_IN_FAIL } from "constants/AUTH";
 
-import { ButtonGroup, Notice, Root } from "./ModalStyle";
+import { ButtonGroup, Notice, Root, Message, Button, LI } from "./ModalStyle";
 
 const SlightlyModal = (props) => {
   const dispatch = useDispatch();
@@ -25,14 +25,14 @@ const SlightlyModal = (props) => {
   return (
     <Root>
       <Notice>
-        <p>{props.msg}</p>
+        <Message>{props.msg}</Message>
         <ButtonGroup>
-          <li>
+          <LI>
             <button onClick={backToLogin}>Đóng</button>
-          </li>
+          </LI>
           {!props.currentLogin && !props.currentSignUpFail && (
-            <li>
-              <button
+            <LI>
+              <Button
                 className="goToLogin"
                 onClick={() => {
                   backToLogin();
@@ -41,8 +41,8 @@ const SlightlyModal = (props) => {
                 }}
               >
                 Đăng nhập
-              </button>
-            </li>
+              </Button>
+            </LI>
           )}
         </ButtonGroup>
       </Notice>

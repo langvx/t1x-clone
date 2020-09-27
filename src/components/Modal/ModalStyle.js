@@ -27,18 +27,19 @@ export const Notice = styled.div`
   text-align: center;
   color: #8f9cb5;
   overflow: hidden;
-  p {
-    padding: 3em 1em;
-    font-size: ${(props) => props.theme.font.size.md};
-    color: ${(props) => props.theme.colors.text.secondary};
-    font-weight: 600;
-  }
   @media (max-width: ${(props) => props.theme.screen.sm}) {
     max-width: 380px;
   }
   @media (max-width: 420px) {
     max-width: 280px;
   }
+`;
+
+export const Message = styled.p`
+  padding: 3em 1em;
+  font-size: ${(props) => props.theme.font.size.md};
+  color: ${(props) => props.theme.colors.text.secondary};
+  font-weight: 600;
 `;
 
 export const ButtonGroup = styled.ul`
@@ -77,3 +78,6 @@ export const ButtonGroup = styled.ul`
     }
   }
 `;
+
+export const LI = styled.li``;
+export const Button = styled.button``;

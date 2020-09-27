@@ -1,9 +1,13 @@
 // User auth index
 import React, { useCallback, useState } from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import SignIn from "./sign-in";
 import SignUp from "./sign-up";
 import SlightlyModal from "components/Modal";
+import bgSrc from "assets/bg2.jpg";
+import tixSignLogo from "assets/group@2x.png";
 
 import {
   Background,
@@ -12,14 +16,11 @@ import {
   SignWrapper,
   LoginControler,
   Tabz,
+  HeaderMsg,
 } from "./AuthPageStyle";
-import bgSrc from "assets/bg2.jpg";
-import tixSignLogo from "assets/group@2x.png";
 
 import { Tab, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
-import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 
 const Auth = () => {
   const signUpSuccess = useSelector((state) => state.userData.signUpSuccess);
@@ -36,11 +37,11 @@ const Auth = () => {
     <Background style={{ backgroundImage: `url(${bgSrc})` }}>
       <SignWrapper>
         <SignHeader src={tixSignLogo} alt="" />
-        <div>
+        <HeaderMsg>
           Đăng nhập để được nhiều ưu đãi, mua vé
           <br />
           và bảo mật thông tin!
-        </div>
+        </HeaderMsg>
         <LoginControler>
           <Tabz
             selectedIndex={currentAction}

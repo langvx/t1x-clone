@@ -71,7 +71,7 @@ export const UserCP = styled.div`
     display: table-cell;
     vertical-align: middle;
   }
-  #account:hover {
+  /* #account:hover {
     ${LogOut} {
       display: block !important;
     }
@@ -107,9 +107,52 @@ export const UserCP = styled.div`
   #account .titleDisplay p {
     margin: 0;
     display: inline-block;
-  }
+  } */
   @media (max-width: ${(p) => p.theme.screen.md}) {
     display: none;
+  }
+`;
+
+export const Account = styled.div`
+  position: relative;
+  padding-right: ${(p) => p.theme.spacing.xs};
+  cursor: pointer;
+  height: 120px;
+
+  :hover {
+    ${LogOut} {
+      display: block !important;
+    }
+  }
+
+  :after {
+    content: "";
+    position: absolute;
+    right: ${(p) => p.theme.spacing.none};
+    height: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    border-right: 1px solid #fff;
+    border-right-color: #e9e9e9;
+  }
+
+  .titleDisplay {
+    color: #9b9b9b;
+    margin: inherit;
+    font-size: 13px;
+  }
+
+  .titleDisplay img {
+    height: auto;
+    width: 30px;
+    border-radius: 25px;
+    margin-right: ${(p) => p.theme.spacing.xxs};
+    vertical-align: middle;
+  }
+
+  .titleDisplay p {
+    margin: 0;
+    display: inline-block;
   }
 `;
 
@@ -122,3 +165,12 @@ export const LocationHeader = styled.img`
   position: relative;
   opacity: 0.5;
 `;
+
+export const P = styled.p`
+  vertical-align: middle;
+  padding: 0 8px;
+`;
+
+export const A = styled.a``;
+
+export const IMG = styled.img``;

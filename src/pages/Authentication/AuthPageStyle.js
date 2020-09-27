@@ -208,3 +208,5 @@ export const Button = styled.div`
     content: "\f1d8";
   }
 `;
+
+export const HeaderMsg = styled.div``;

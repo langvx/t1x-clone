@@ -8,10 +8,10 @@ import { SET_TOKEN, SET_USER_PROFILE } from "constants/AUTH";
 
 const App = () => {
   const dispatch = useDispatch();
+  const token = localStorage.getItem("accessToken");
+  const userProfile = JSON.parse(localStorage.getItem("userProfile"));
 
   useEffect(() => {
-    const token = localStorage.getItem("accessToken");
-    const userProfile = JSON.parse(localStorage.getItem("userProfile"));
     // console.log(userProfile);
     if (token) {
       dispatch({
@@ -25,12 +25,12 @@ const App = () => {
         payload: userProfile,
       });
     }
-  }, [dispatch]);
+  }, [dispatch, token, userProfile]);
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route path="/auth" component={Auth} />
+        {!token && <Route path="/auth" component={Auth} />}
         <Route path="/" component={Home} />
       </Switch>
     </BrowserRouter>

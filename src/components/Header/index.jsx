@@ -15,6 +15,10 @@ import {
   Location,
   LocationHeader,
   LogOut,
+  Account,
+  P,
+  A,
+  IMG,
 } from "./HeaderStyle";
 
 import DropdownMenu from "components/Dropdown";
@@ -46,33 +50,26 @@ const Header = () => {
         <Logo src={TixLogo} alt="tix" />
       </NavLink>
       <Navigation>
-        <a href="#schedule">Lịch chiếu</a>
-        <a href="#theatre">Cụm rạp</a>
-        <a href="#news">Tin tức</a>
-        <a href="#app">Ứng dụng</a>
+        <A href="schedule">Lịch chiếu</A>
+        <A href="theatre">Cụm rạp</A>
+        <A href="news">Tin tức</A>
+        <A href="app">Ứng dụng</A>
       </Navigation>
       <UserCP>
-        <div id="account">
+        <Account id="account">
           {token ? (
             <NavLink to="/usercp" className="titleDisplay">
-              <img src={AnonymousAvatar} alt="" />
-              <p
-                style={{
-                  verticalAlign: "middle",
-                  padding: "0 8px",
-                }}
-              >
-                {userProfile.hoTen}
-              </p>
+              <IMG src={AnonymousAvatar} alt="" />
+              <P>{userProfile.hoTen}</P>
               <LogOut onClick={handleLogOut}>Đăng xuất</LogOut>
             </NavLink>
           ) : (
             <NavLink to="/auth" className="titleDisplay">
-              <img src={AnonymousAvatar} alt="" />
-              <p style={{ verticalAlign: "middle" }}>Đăng nhập</p>
+              <IMG src={AnonymousAvatar} alt="" />
+              <P>Đăng nhập</P>
             </NavLink>
           )}
-        </div>
+        </Account>
         <Location>
           <LocationHeader src={LocationIco} alt="" />
           <DropdownMenu data={locationData} />

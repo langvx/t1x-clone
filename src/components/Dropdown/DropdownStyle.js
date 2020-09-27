@@ -62,3 +62,5 @@ export const DropList = styled.ul`
     color: #fff;
   }
 `;
+
+export const Root = styled.div``;

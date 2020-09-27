@@ -2,14 +2,24 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 
 import AnonymousAvatar from "assets/avatar.png";
 import CloseDrawer from "assets/next-session.png";
-import { Root, MobileLocationList } from "components/SideDrawer/DrawerStyle";
+import {
+  Root,
+  MobileLocationList,
+  UserName,
+  DIV,
+  UL,
+  IMG,
+  A,
+} from "components/SideDrawer/DrawerStyle";
 import { useSelector } from "react-redux";
+
+import { useHistory } from "react-router-dom";
 
 const SideDrawer = (props) => {
   const dummyHref = "#";
   const [showMobileLocation, setshowMobileLocation] = useState(false);
   const node = useRef();
-
+  const history = useHistory();
   const userProfile = useSelector((state) => state.userData.profile);
   const token = useSelector((state) => state.userData.accessToken);
 
@@ -41,6 +51,16 @@ const SideDrawer = (props) => {
     },
     [nodeDefault, props]
   );
+
+  const handleLogOut = (e) => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      localStorage.setItem("accessToken", "");
+    }
+    window.location.reload();
+    e.preventDefault();
+  };
+
   useEffect(() => {
     document.addEventListener("mousedown", handleOutside, false);
     return () => {
@@ -50,58 +70,69 @@ const SideDrawer = (props) => {
 
   return (
     <Root className={props.showDrawer && "activeDrawer"}>
-      <div ref={node} className="wrapMenuMobile customScroll">
-        <div className="wrapFirst">
+      <DIV ref={node} className="wrapMenuMobile customScroll">
+        <DIV className="wrapFirst">
           {token ? (
-            <a href={dummyHref}>
-              <img src={AnonymousAvatar} className="btnAvatarMobile" alt="" />
+            <UserName
+              href={dummyHref}
+              onClick={(e) => {
+                e.preventDefault();
+              }}
+            >
+              <IMG src={AnonymousAvatar} className="btnAvatarMobile" alt="" />
               {userProfile.hoTen}
-            </a>
+            </UserName>
           ) : (
-            <a href={dummyHref}>
-              <img src={AnonymousAvatar} className="btnAvatarMobile" alt="" />
+            <UserName
+              href={dummyHref}
+              onClick={(e) => {
+                e.preventDefault();
+                history.push("/auth");
+              }}
+            >
+              <IMG src={AnonymousAvatar} className="btnAvatarMobile" alt="" />
               Đăng nhập
-            </a>
+            </UserName>
           )}
-          <img
+          <IMG
             onClick={props.handleShowDrawer}
             src={CloseDrawer}
             className="close icon-arrow-right"
             alt=""
           />
-        </div>
-        <a href={dummyHref} className="menu">
+        </DIV>
+        <A href={dummyHref} className="menu">
           Lịch chiếu
-        </a>
-        <a href={dummyHref} className="menu">
+        </A>
+        <A href={dummyHref} className="menu">
           Cụm rạp
-        </a>
-        <a href={dummyHref} className="menu">
+        </A>
+        <A href={dummyHref} className="menu">
           Tin tức
-        </a>
-        <a href={dummyHref} className="menu">
+        </A>
+        <A href={dummyHref} className="menu">
           Ứng dụng
-        </a>
-        <a href={dummyHref} className="menu" onClick={showLocationDrawer}>
+        </A>
+        <A href={dummyHref} className="menu" onClick={showLocationDrawer}>
           Hồ Chí Minh
-        </a>
+        </A>
         {token && (
-          <a href={dummyHref} className="menu">
+          <A href={dummyHref} onClick={handleLogOut} className="menu">
             Đăng xuất
-          </a>
+          </A>
         )}
         {showMobileLocation && (
           <MobileLocationList>
-            <div className="modal-dialog modal-location">
-              <div className="modal-content customScroll">
-                <div ref={node} className="modal-body">
-                  <ul>{handleRenderList()}</ul>
-                </div>
-              </div>
-            </div>
+            <DIV className="modal-dialog modal-location">
+              <DIV className="modal-content customScroll">
+                <DIV ref={node} className="modal-body">
+                  <UL>{handleRenderList()}</UL>
+                </DIV>
+              </DIV>
+            </DIV>
           </MobileLocationList>
         )}
-      </div>
+      </DIV>
     </Root>
   );
 };
